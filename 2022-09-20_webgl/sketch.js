@@ -6,7 +6,7 @@ function setup() {
 
 
 function draw() {
-  background(175);
+  background(255);
 
   // 1.ambient light:
   //ambientLight(0,0,255); // ambient material only refelcts colour of ,etarial
@@ -30,7 +30,6 @@ function draw() {
 
   directionalLight(255,255,0,dx,dy,v);
 
-
   rotateX( angle);
   rotateY( angle * 0.3);
   rotateZ( angle * 1.2);
@@ -47,6 +46,4 @@ function draw() {
 
   angle += 0.03;
  
-
-  
 }
