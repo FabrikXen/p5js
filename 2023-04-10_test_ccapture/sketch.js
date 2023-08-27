@@ -1,3 +1,4 @@
+// * num for amount of minutes
 let numFrames = 3600 * 5;
 let capture;
 
@@ -38,8 +39,10 @@ function setup() {
  //  MySweetVideo.mp4
 
  // add -s 540x540 for dimesion
+ 
+ // Command used: 
+ // ffmpeg -y -r 60 -s 3840x2160 -i blob_frames/%07d.png -c:v libx264 -profile:v high -crf 20 -pix_fmt yuv420p blobvid_5min.mp4
 }
-
 
 function draw() {
   // we have to start recording in draw() otherwise your sketch
@@ -60,24 +63,21 @@ function draw() {
 
   ////// DRAW SOMETHING
   background(0);
+  translate(width / 2 , height / 2 );
 
-  let x1 = map(noise(xoff1),0,1, -width/2, width/2);
-  let y1 = map(noise(xoff2),0,1, -height/2, height/2);
+  let x1 = map(noise(xoff1),0,1, -width/4, width/4);
+  let y1 = map(noise(xoff2),0,1, -height/4, height/4);
 
- // translate(width / 2 + x1, height / 2 + y1  ); 
-  xoff1 += 0.0004;
-  xoff2 += 0.0004;
-
-  /// with no noise in translation
-  translate(width / 2 , height / 2 ); 
+  xoff1 += 0.001;
+  xoff2 += 0.001;
 
   beginShape();
-  for (let a = 0; a < TWO_PI; a += 0.005) {
+  for (let a = 0; a < TWO_PI; a += 0.007) { // 0.005
 
     let xoff = map(cos(a), -1, 1, 0, noiseMax);
     let yoff = map(sin(a), -1, 1, 0, noiseMax);
 
-    let r = map(noise(xoff, yoff, zoff), 0, 1, 0, width * 0.8);
+    let r = map(noise(xoff, yoff, zoff), 0, 1, width/8, width);
 
     let x = r * cos(a) + x1; // polar to cartesian 
     let y = r * sin(a) + y1;
@@ -85,10 +85,9 @@ function draw() {
     vertex(x, y);
   }
   endShape(CLOSE);
-  zoff += 0.0009;
+  zoff += 0.0015; // 0.009
 
   ///// END OF DRAWING
-
 
   // capture the current state of the canvas every frame
   // (note this should be after you finish drawing stuff!)

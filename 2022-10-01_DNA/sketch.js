@@ -17,13 +17,13 @@ function draw() {
   	var x = i*(width)/(CircleNum);
     fill(random(150,255), 0, 100, 200); // PINK
     noStroke();
-    ellipse(x,height/2+30*sin(50*i+frameCount/100),Diameter,Diameter); //3.5
+    ellipse(x, height/2+30*sin(50*i+frameCount/100),  Diameter,Diameter); //3.5
     
   	var x2 = i*(width)/(CircleNum);
 	
     fill(random(150,255), 0, 100, 200);
     noStroke();
-    ellipse(x2,height/2+20*cos(PI*(3/4)+50*i+frameCount/100),Diameter,Diameter);
+    ellipse(x2, height/2+20*cos(PI*(3/4)+50*i+frameCount/100),  Diameter,Diameter);
     
     strokeWeight(0.1);
     stroke(255,0, 200);
